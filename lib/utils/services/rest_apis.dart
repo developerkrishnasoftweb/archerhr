@@ -14,6 +14,7 @@ import 'package:archerhr_mobile/model/expense_list_data_model.dart';
 import 'package:archerhr_mobile/model/getexpense_byid_model.dart';
 import 'package:archerhr_mobile/model/getleave_byid_model.dart';
 import 'package:archerhr_mobile/model/gettravel_byid_model.dart';
+import 'package:archerhr_mobile/model/home_details_model.dart';
 import 'package:archerhr_mobile/model/leave_approval_model.dart';
 import 'package:archerhr_mobile/model/leave_data_model.dart';
 import 'package:archerhr_mobile/model/profile_model.dart';
@@ -477,6 +478,25 @@ Future<Data<DashboardData>> getDashboardData() async {
   }
 }
 
+///GET DASHBOARD EMPLOYEE DATA
+Future<Data<HomeDetailsModel>> getDashboardEmployeeData() async {
+  try {
+    final response = await http.get(Uri.parse(Urls.baseUrl + Urls.employeeDashBoardData), headers: headers);
+
+    log("Response : ${response.body}");
+    final jsonResponse = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      HomeDetailsModel homeDetailsModel = HomeDetailsModel.fromJson(jsonResponse);
+      return Data(data: homeDetailsModel, statusCode: response.statusCode);
+    }
+    return Data.fromJson(jsonResponse);
+  } on SocketException catch (_) {
+    return const Data(message: _noInternetConnection);
+  } catch (e) {
+    return const Data(message: _errorMessage);
+  }
+}
+
 ///GET PROFILE INFO
 Future<Data<ProfileModel>> getProfileData() async {
   try {
@@ -551,6 +571,7 @@ Future<Data<DirectoryListModel>> directoryListData() async {
   }
 }
 
+///DIRECTORY BY ID
 Future<Data<DirectoryByIdModel>> getDirectoryDataById(queryParameter) async {
   try {
     final response =

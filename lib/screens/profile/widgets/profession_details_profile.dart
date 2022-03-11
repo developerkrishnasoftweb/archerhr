@@ -28,7 +28,7 @@ class _ProfessionDetailsProfileScreenState extends State<ProfessionDetailsProfil
   void initState() {
     super.initState();
     profileProvider = widget.profileProvider;
-    String dateOfJoin = DateFormat('MM-dd-yyyy').format(DateTime.parse(profileProvider.employeeDetail.dOJ));
+    String dateOfJoin = DateFormat('dd-MMM-yyyy').format(DateTime.parse(profileProvider.employeeDetail.dOJ));
     dateOfJoinController.text = dateOfJoin;
     branchController.text = profileProvider.employeeDetail.branchName;
     buController.text = profileProvider.employeeDetail.buName;

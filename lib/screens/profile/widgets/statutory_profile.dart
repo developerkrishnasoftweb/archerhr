@@ -60,7 +60,7 @@ class _StatutoryProfileScreenState extends State<StatutoryProfileScreen> {
     super.initState();
     profileProvider = widget.profileProvider;
 
-    String pfStartDate = DateFormat('MM-dd-yyyy').format(DateTime.parse(profileProvider.employeeStatutory.pFStartDate));
+    String pfStartDate = DateFormat('dd-MMM-yyyy').format(DateTime.parse(profileProvider.employeeStatutory.pFStartDate));
     adharCardNoController.text = profileProvider.employeeStatutory.nationalIdNo;
     panCardNoController.text = profileProvider.employeeStatutory.pANCardNo;
     drivingLicenseController.text = profileProvider.employeeStatutory.drivingLicense;

@@ -1,16 +1,15 @@
 import 'package:archerhr_mobile/const/const_size.dart';
 import 'package:archerhr_mobile/provider/profile_provider.dart';
 import 'package:archerhr_mobile/screens/widgets/input.dart';
-import 'package:archerhr_mobile/screens/widgets/table_icon_tap.dart';
 import 'package:archerhr_mobile/screens/widgets/title_text.dart';
-import 'package:archerhr_mobile/utils/services/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 class PassportVisaProfileScreen extends StatefulWidget {
-  PassportVisaProfileScreen({Key key,this.profileProvider}) : super(key: key);
+  PassportVisaProfileScreen({Key key, this.profileProvider}) : super(key: key);
   ProfileProvider profileProvider;
+
   @override
   _PassportVisaProfileScreenState createState() => _PassportVisaProfileScreenState();
 }
@@ -31,8 +30,8 @@ class _PassportVisaProfileScreenState extends State<PassportVisaProfileScreen> {
     super.initState();
     profileProvider = widget.profileProvider;
 
-    String issueDate = DateFormat('MM-dd-yyyy').format(DateTime.parse(profileProvider.employeePassport.issueDate));
-    String validDate = DateFormat('MM-dd-yyyy').format(DateTime.parse(profileProvider.employeePassport.validity));
+    String issueDate = DateFormat('dd-MMM-yyyy').format(DateTime.parse(profileProvider.employeePassport.issueDate));
+    String validDate = DateFormat('dd-MMM-yyyy').format(DateTime.parse(profileProvider.employeePassport.validity));
 
     passportNoController.text = profileProvider.employeePassport.passportNo;
     oldPassportNoController.text = profileProvider.employeePassport.oldpassportNo;
@@ -40,7 +39,8 @@ class _PassportVisaProfileScreenState extends State<PassportVisaProfileScreen> {
     issueDateController.text = issueDate;
     validTillController.text = validDate;
     issuePlaceController.text = profileProvider.employeePassport.issuePlace;
-    issueCountryController.text = profileProvider.employeePassport.country == null ? "N/A" : profileProvider.employeePassport.country;
+    issueCountryController.text =
+        profileProvider.employeePassport.country == null ? "N/A" : profileProvider.employeePassport.country;
   }
 
   @override
@@ -112,9 +112,7 @@ class _PassportVisaProfileScreenState extends State<PassportVisaProfileScreen> {
                   Expanded(
                     child: Column(
                       children: [
-                        const TitleText(
-                            label: "Name in Passport"
-                        ),
+                        const TitleText(label: "Name in Passport"),
                         Input(
                           controller: nameInPassportController,
                           readOnly: true,
@@ -150,9 +148,7 @@ class _PassportVisaProfileScreenState extends State<PassportVisaProfileScreen> {
                   Expanded(
                     child: Column(
                       children: [
-                        const TitleText(
-                            label: "Valid Till"
-                        ),
+                        const TitleText(label: "Valid Till"),
                         Input(
                           controller: validTillController,
                           readOnly: true,
@@ -238,12 +234,12 @@ class _PassportVisaProfileScreenState extends State<PassportVisaProfileScreen> {
                   rows: profileProvider.employeeVisaList
                       .map(
                         (e) => DataRow(cells: [
-                      DataCell(Text(e.visaNo)),
-                      DataCell(Text(e.country)),
-                      DataCell(Text(e.visaType)),
-                      DataCell(Text(e.visaValidity)),
-                    ]),
-                  )
+                          DataCell(Text(e.visaNo)),
+                          DataCell(Text(e.country)),
+                          DataCell(Text(e.visaType)),
+                          DataCell(Text(DateFormat('dd-MMM-yyyy').format(DateTime.parse(e.visaValidity)))),
+                        ]),
+                      )
                       .toList(),
                 ),
               ),

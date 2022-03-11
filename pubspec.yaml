@@ -54,6 +54,7 @@ dependencies:
   draggable_widget: ^2.0.0
   flutter_background_service: ^0.2.6
   url_launcher: ^6.0.20
+  table_calendar: ^3.0.4
 
 dev_dependencies:
   flutter_test:

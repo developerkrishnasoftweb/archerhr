@@ -94,8 +94,11 @@ class Urls {
   static const String statusExpenseApproval = '/EmployeeData/ApproveExpense';
 
 ///DASHBOARD
-  //Expense Status Approval
+  //Dashboard Data
   static const String dashBoardGraph = '/Dashboard/GetHomeDashboard';
+
+  //Employee Dashboard Data
+  static const String employeeDashBoardData = '/EmployeeData/GetHomeDashboard';
 
 ///PUNCH
   //Punch In

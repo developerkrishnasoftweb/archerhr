@@ -39,8 +39,8 @@ class _AddressProfileScreenState extends State<AddressProfileScreen> {
     super.initState();
     profileProvider = widget.profileProvider;
 
-    String comStayFrom = DateFormat('MM-dd-yyyy').format(DateTime.parse(profileProvider.employeeDetail.stayFrom));
-    String perStayFrom = DateFormat('MM-dd-yyyy').format(DateTime.parse(profileProvider.employeeDetail.permFrom));
+    String comStayFrom = DateFormat('dd-MMM-yyyy').format(DateTime.parse(profileProvider.employeeDetail.stayFrom));
+    String perStayFrom = DateFormat('dd-MMM-yyyy').format(DateTime.parse(profileProvider.employeeDetail.permFrom));
 
     communicationLine1Controller.text = profileProvider.employeeDetail.comLine1;
     communicationLine2Controller.text = profileProvider.employeeDetail.comLine2;

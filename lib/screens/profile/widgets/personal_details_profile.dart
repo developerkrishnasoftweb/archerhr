@@ -44,8 +44,8 @@ class _PersonalDetailsProfileScreenState extends State<PersonalDetailsProfileScr
     super.initState();
     profileProvider = widget.profileProvider;
 
-    String dateOfBirth = DateFormat('MM-dd-yyyy').format(DateTime.parse(profileProvider.employeeDetail.dOB));
-    String marriageDate = DateFormat('MM-dd-yyyy').format(DateTime.parse(profileProvider.employeeDetail.marriageDate));
+    String dateOfBirth = DateFormat('dd-MMM-yyyy').format(DateTime.parse(profileProvider.employeeDetail.dOB));
+    String marriageDate = DateFormat('dd-MMM-yyyy').format(DateTime.parse(profileProvider.employeeDetail.marriageDate));
     firstNameController.text = profileProvider.employeeDetail.firstName;
     lastNameController.text = profileProvider.employeeDetail.lastName;
     middleNameController.text = profileProvider.employeeDetail.middleName;

@@ -9,6 +9,7 @@ import 'package:archerhr_mobile/provider/expense_list_data_provider.dart';
 import 'package:archerhr_mobile/provider/get_expense_provider.dart';
 import 'package:archerhr_mobile/provider/get_leave_provider.dart';
 import 'package:archerhr_mobile/provider/get_travel_provider.dart';
+import 'package:archerhr_mobile/provider/home_details_provider.dart';
 import 'package:archerhr_mobile/provider/leave_approval_provider.dart';
 import 'package:archerhr_mobile/provider/leave_data_provider.dart';
 import 'package:archerhr_mobile/provider/profile_provider.dart';
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider<TravelApprovalProvider>(create: (context) => TravelApprovalProvider()),
           ChangeNotifierProvider<GetDirectoryListProvider>(create: (context) => GetDirectoryListProvider()),
           ChangeNotifierProvider<GetDirectoryByIdProvider>(create: (context) => GetDirectoryByIdProvider()),
+          ChangeNotifierProvider<HomeEmployeeDataProvider>(create: (context) => HomeEmployeeDataProvider()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
