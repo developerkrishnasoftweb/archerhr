@@ -775,7 +775,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   Tab(text: 'LEAVE'),
                   Tab(text: 'EXPENSE'),
                   Tab(text: 'TRAVEL'),
-                  Tab(text: 'APPROVAL'),
+                  Tab(text: 'MY ACTIONS'),
                 ],
               ),
             ),
