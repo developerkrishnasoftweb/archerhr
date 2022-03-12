@@ -50,31 +50,33 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(right: 10.w, left: 10.w, top: 10.h),
-      child: ListView(
-        children: [
-          const CalendarHomeScreen(),
-          SizedBox(height: 7.h),
-          Row(
-            children: [
-              const MyLeaveHomeScreen(),
-              sizeBox10w,
-              const MyAttendanceHomeScreen(),
-            ],
-          ),
-          SizedBox(height: 7.h),
-          const MyClaimHomeScreen(),
-          SizedBox(height: 7.h),
-          const MyTravelHomeScreen(),
-          SizedBox(height: 4.h),
-          const BirthDayHomeScreen(),
-          SizedBox(height: 2.h),
-          const HolidayHomeScreen(),
-          SizedBox(height: 2.h),
-          const TaskHomeScreen(),
-          SizedBox(height: 2.h),
-          const NewsHomeScreen(),
-          sizeBox10h
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const CalendarHomeScreen(),
+            SizedBox(height: 7.h),
+            Row(
+              children: [
+                const MyLeaveHomeScreen(),
+                sizeBox10w,
+                const MyAttendanceHomeScreen(),
+              ],
+            ),
+            SizedBox(height: 7.h),
+            const MyClaimHomeScreen(),
+            SizedBox(height: 7.h),
+            const MyTravelHomeScreen(),
+            SizedBox(height: 4.h),
+            const BirthDayHomeScreen(),
+            SizedBox(height: 2.h),
+            const HolidayHomeScreen(),
+            SizedBox(height: 2.h),
+            const TaskHomeScreen(),
+            SizedBox(height: 2.h),
+            const NewsHomeScreen(),
+            sizeBox10h
+          ],
+        ),
       ),
     );
   }

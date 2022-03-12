@@ -1,4 +1,5 @@
 import 'package:archerhr_mobile/model/home_details_model.dart';
+import 'package:archerhr_mobile/screens/home/widgets/watch_task_home.dart';
 import 'package:archerhr_mobile/screens/widgets/table_icon_tap.dart';
 import 'package:archerhr_mobile/utils/services/palette.dart';
 import 'package:flutter/material.dart';
@@ -15,11 +16,17 @@ class TaskSource extends DataTableSource {
     return DataRow(cells: [
       DataCell(Text(tasksList[index].id.toString())),
       DataCell(Text(tasksList[index].title)),
-      DataCell(Text(DateFormat('MMM dd, yyyy').format(DateTime.parse(tasksList[index].targetDate)))),
+      DataCell(Text(DateFormat('MMM d, yyyy').format(DateTime.parse(tasksList[index].targetDate)))),
       DataCell(
         Center(
           child: TableIconTap(
-            onTap: () {},
+            onTap: () {
+              /*showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (BuildContext context) => const WatchTaskHomeScreen(),
+              );*/
+            },
             icon: Icons.remove_red_eye_rounded,
             color: Palette.buttonBackgroundColor,
           ),

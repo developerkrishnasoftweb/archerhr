@@ -3,6 +3,7 @@ import 'package:archerhr_mobile/provider/home_details_provider.dart';
 import 'package:archerhr_mobile/utils/services/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class HolidayHomeScreen extends StatefulWidget {
@@ -59,6 +60,13 @@ class _HolidayHomeScreenState extends State<HolidayHomeScreen> {
                         shrinkWrap: true,
                         itemCount: provider.holidays.length,
                         itemBuilder: (context, index) {
+                          DateTime date = DateFormat('dd-MMM-yy').parse(provider.holidays[index].holidayDate);
+                          final int day = date.day % 10;
+                          String suffix = "th";
+                          if((day > 0 && day < 4) && (date.day < 11 || date.day > 13)){
+                           suffix = <String>['st','nd','rd'][day - 1];
+                          }
+                          String showDate = DateFormat("d'$suffix' MMMM").format(date);
                           return Column(
                             children: [
                               Row(
@@ -66,7 +74,7 @@ class _HolidayHomeScreenState extends State<HolidayHomeScreen> {
                                   const Icon(Icons.wb_sunny_outlined, color: Colors.cyan, size: 30),
                                   sizeBox10w,
                                   Text(
-                                    provider.holidays[index].holidayDate + " " + provider.holidays[index].holiday,
+                                    showDate + ", " + provider.holidays[index].holiday,
                                     style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500),
                                   ),
                                 ],

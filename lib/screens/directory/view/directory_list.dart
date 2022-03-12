@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:archerhr_mobile/model/directory_list_data_model.dart';
 import 'package:archerhr_mobile/provider/directory_list_data_provider.dart';
 import 'package:archerhr_mobile/screens/directory/widgets/directory_data_byid.dart';
+import 'package:archerhr_mobile/screens/widgets/input.dart';
 import 'package:archerhr_mobile/screens/widgets/table_icon_tap.dart';
 import 'package:archerhr_mobile/utils/services/palette.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +19,8 @@ class EmployeesList extends StatefulWidget {
 
 class _EmployeesListState extends State<EmployeesList> {
   GetDirectoryListProvider getDirectoryListProvider;
+  TextEditingController searchController = TextEditingController();
+
 
   @override
   void initState() {
@@ -32,9 +37,7 @@ class _EmployeesListState extends State<EmployeesList> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery
-        .of(context)
-        .size;
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: const Color.fromRGBO(232, 238, 240, 1),
       appBar: AppBar(
@@ -44,6 +47,14 @@ class _EmployeesListState extends State<EmployeesList> {
       ),
       body: Column(
         children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Input(
+              controller: searchController,
+              hintText: "Search Here...",
+              //onChanged: searchDirectory,
+            ),
+          ),
           Padding(
             padding: EdgeInsets.fromLTRB(5.w, 5.h, 5.w, 20.h),
             child: Card(
@@ -138,17 +149,18 @@ class DirectorySource extends DataTableSource {
       DataCell(Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          TableIconTap(onTap: () {
-            showDialog(
-              barrierDismissible: false,
-              context: context,
-              builder: (BuildContext context) => DirectoryDataById(
-                id: directoryList[index].id,
-              ),
-            );
-          },
-              icon: Icons.remove_red_eye_rounded,
-              color: Palette.buttonBackgroundColor,
+          TableIconTap(
+            onTap: () {
+              showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (BuildContext context) => DirectoryDataById(
+                  id: directoryList[index].id,
+                ),
+              );
+            },
+            icon: Icons.remove_red_eye_rounded,
+            color: Palette.buttonBackgroundColor,
           ),
         ],
       ))

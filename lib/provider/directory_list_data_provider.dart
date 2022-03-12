@@ -19,6 +19,8 @@ class GetDirectoryListProvider with ChangeNotifier {
     if (response.statusCode == 200) {
       directoryListModel = response.data;
       _allEmployeesList = response.data.allEmployeesList;
+
+
     }else {
       unAuthenticationDialog(context);
     }
