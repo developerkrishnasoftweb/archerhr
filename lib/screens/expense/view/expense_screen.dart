@@ -195,7 +195,7 @@ class ExpenseSource extends DataTableSource {
                                 return buildSingleButtonPopupDialog(
                                     icon: Icons.check_circle_outline_rounded,
                                     mainText: "Deleted!",
-                                    text: "Your Claim Successfully Deleted.",
+                                    text: "Your Expense Successfully Deleted.",
                                     onPressed: () {
                                       Navigator.pop(context);
                                       expenseListDataProvider.clear();

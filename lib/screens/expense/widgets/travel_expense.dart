@@ -272,7 +272,7 @@ class _TravelExpenseScreenState extends State<TravelExpenseScreen> {
                   context: context,
                   icon: Icons.check_circle_outline_rounded,
                   mainText: "Saved!",
-                  text: "Claim Successfully Saved.",
+                  text: "Expense Successfully Saved.",
                   onPressed: () {
                     Navigator.pop(context);
                     getExpenseProvider.clear();

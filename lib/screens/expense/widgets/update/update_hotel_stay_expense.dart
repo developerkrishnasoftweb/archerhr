@@ -358,7 +358,7 @@ class _UpdateHotelStayExpenseScreenState extends State<UpdateHotelStayExpenseScr
                   context: context,
                   icon: Icons.check_circle_outline_rounded,
                   mainText: "Updated!",
-                  text: "Claim Successfully Update.",
+                  text: "Expense Successfully Update.",
                   onPressed: () {
                     Navigator.pop(context);
                     getExpenseProvider.clear();

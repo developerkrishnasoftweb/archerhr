@@ -216,7 +216,7 @@ class _UpdateExpenseListState extends State<UpdateExpenseList> {
                                                                         return buildSingleButtonPopupDialog(
                                                                             icon: Icons.check_circle_outline_rounded,
                                                                             mainText: "Deleted!",
-                                                                            text: "Your Travel Successfully Deleted.",
+                                                                            text: "Your Expense Successfully Deleted.",
                                                                             onPressed: () {
                                                                               Navigator.pop(context);
                                                                               provider.clear();
@@ -334,7 +334,7 @@ class _UpdateExpenseListState extends State<UpdateExpenseList> {
                                                                         return buildSingleButtonPopupDialog(
                                                                             icon: Icons.check_circle_outline_rounded,
                                                                             mainText: "Deleted!",
-                                                                            text: "Your Travel Successfully Deleted.",
+                                                                            text: "Your Expense Successfully Deleted.",
                                                                             onPressed: () {
                                                                               Navigator.pop(context);
                                                                               provider.clear();
@@ -451,7 +451,7 @@ class _UpdateExpenseListState extends State<UpdateExpenseList> {
                                                                         return buildSingleButtonPopupDialog(
                                                                             icon: Icons.check_circle_outline_rounded,
                                                                             mainText: "Deleted!",
-                                                                            text: "Your Travel Successfully Deleted.",
+                                                                            text: "Your Expense Successfully Deleted.",
                                                                             onPressed: () {
                                                                               Navigator.pop(context);
                                                                               provider.clear();
@@ -579,7 +579,7 @@ class _UpdateExpenseListState extends State<UpdateExpenseList> {
                                                                         return buildSingleButtonPopupDialog(
                                                                             icon: Icons.check_circle_outline_rounded,
                                                                             mainText: "Deleted!",
-                                                                            text: "Your Travel Successfully Deleted.",
+                                                                            text: "Your Expense Successfully Deleted.",
                                                                             onPressed: () {
                                                                               Navigator.pop(context);
                                                                               provider.clear();
@@ -695,7 +695,7 @@ class _UpdateExpenseListState extends State<UpdateExpenseList> {
                                                                         return buildSingleButtonPopupDialog(
                                                                             icon: Icons.check_circle_outline_rounded,
                                                                             mainText: "Deleted!",
-                                                                            text: "Your Travel Successfully Deleted.",
+                                                                            text: "Your Expense Successfully Deleted.",
                                                                             onPressed: () {
                                                                               Navigator.pop(context);
                                                                               provider.clear();
@@ -814,7 +814,7 @@ class _UpdateExpenseListState extends State<UpdateExpenseList> {
                                                                         return buildSingleButtonPopupDialog(
                                                                             icon: Icons.check_circle_outline_rounded,
                                                                             mainText: "Deleted!",
-                                                                            text: "Your Travel Successfully Deleted.",
+                                                                            text: "Your Expense Successfully Deleted.",
                                                                             onPressed: () {
                                                                               Navigator.pop(context);
                                                                               provider.clear();

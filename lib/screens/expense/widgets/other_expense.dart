@@ -236,7 +236,7 @@ class _OtherExpenseScreenState extends State<OtherExpenseScreen> {
                   context: context,
                   icon: Icons.check_circle_outline_rounded,
                   mainText: "Saved!",
-                  text: "Claim Successfully Saved.",
+                  text: "Expense Successfully Saved.",
                   onPressed: () {
                     Navigator.pop(context);
                     getExpenseProvider.clear();
