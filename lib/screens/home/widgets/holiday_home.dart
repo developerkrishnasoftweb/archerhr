@@ -58,6 +58,7 @@ class _HolidayHomeScreenState extends State<HolidayHomeScreen> {
                     child: ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
+                        padding: EdgeInsets.zero,
                         itemCount: provider.holidays.length,
                         itemBuilder: (context, index) {
                           DateTime date = DateFormat('dd-MMM-yy').parse(provider.holidays[index].holidayDate);

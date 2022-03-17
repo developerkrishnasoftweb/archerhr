@@ -56,6 +56,7 @@ class _NewsHomeScreenState extends State<NewsHomeScreen> {
                     child: ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
+                        padding: EdgeInsets.zero,
                         itemCount: provider.newsList.length,
                         itemBuilder: (context, index) {
                           return Column(

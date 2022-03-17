@@ -77,7 +77,7 @@ flutter_native_splash:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/applogo.png"
+  image_path: "assets/images/logoarcher.png"
   remove_alpha_ios: true
 
 # For information on the generic Dart part of this file, see the

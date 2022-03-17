@@ -45,6 +45,7 @@ class _BirthDayHomeScreenState extends State<BirthDayHomeScreen> {
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: 2,
+                    padding: EdgeInsets.zero,
                     itemBuilder: (context, index) {
                       return Column(
                         children: [

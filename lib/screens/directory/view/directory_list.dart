@@ -48,14 +48,6 @@ class _EmployeesListState extends State<EmployeesList> {
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: Input(
-              controller: searchController,
-              hintText: "Search Here...",
-              //onChanged: searchDirectory,
-            ),
-          ),
-          Padding(
             padding: EdgeInsets.fromLTRB(5.w, 5.h, 5.w, 20.h),
             child: Card(
               shape: RoundedRectangleBorder(

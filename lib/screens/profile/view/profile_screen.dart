@@ -96,18 +96,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               backgroundColor: Colors.white,
                               radius: 40,
                               child: imagePath != null
-                                  ? Container(
-                                      decoration: BoxDecoration(border: Border.all(color: Colors.white)),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(50),
-                                        child: Image.file(
-                                          File(imagePath),
-                                          width: 100,
-                                          height: 100,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    )
+                                  ? ClipRRect(
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: Image.file(
+                                      File(imagePath),
+                                      width: 100,
+                                      height: 100,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )
                                   : ClipRRect(
                                       borderRadius: BorderRadius.circular(50),
                                       child: Image.asset(
