@@ -104,7 +104,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                     child: Align(
                                       alignment: Alignment.topLeft,
                                       child: Text(
-                                        "Casual Leaves ${provider.leaveAvailList[0].leaveConsumed}/${int.parse(provider.leaveAvailList[0].leaveTotal.toString().split(".").first)}",
+                                        "Casual Leaves ${provider.leaveAvailList[0].leaveConsumed.toString().split(".0").first}/${int.parse(provider.leaveAvailList[0].leaveTotal.toString().split(".").first)}",
                                         style: TextStyle(
                                           fontSize: 12.sp,
                                           fontWeight: FontWeight.bold,
@@ -130,7 +130,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                     child: Align(
                                       alignment: Alignment.topLeft,
                                       child: Text(
-                                        "Sick Leaves ${provider.leaveAvailList[1].leaveConsumed}/${int.parse(provider.leaveAvailList[1].leaveTotal.toString().split(".").first)}",
+                                        "Sick Leaves ${provider.leaveAvailList[1].leaveConsumed.toString().split(".0").first}/${int.parse(provider.leaveAvailList[1].leaveTotal.toString().split(".").first)}",
                                         style: TextStyle(
                                           fontSize: 12.sp,
                                           fontWeight: FontWeight.bold,

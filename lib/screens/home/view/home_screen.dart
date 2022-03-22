@@ -8,7 +8,6 @@ import 'package:archerhr_mobile/screens/home/widgets/claim_home.dart';
 import 'package:archerhr_mobile/screens/home/widgets/holiday_home.dart';
 import 'package:archerhr_mobile/screens/home/widgets/myleave_home.dart';
 import 'package:archerhr_mobile/screens/home/widgets/news_home.dart';
-import 'package:archerhr_mobile/screens/home/widgets/task_home.dart';
 import 'package:archerhr_mobile/screens/home/widgets/travel_home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -49,31 +48,24 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(right: 10.w, left: 10.w, top: 10.h),
+      padding: EdgeInsets.only(right: 5.w, left: 5.w, top: 5.h),
       child: SingleChildScrollView(
         child: Column(
           children: [
             const CalendarHomeScreen(),
-            SizedBox(height: 7.h),
+            //const TaskHomeScreen(),
+            const NewsHomeScreen(),
             Row(
-              children: [
-                const MyLeaveHomeScreen(),
-                sizeBox10w,
-                const MyAttendanceHomeScreen(),
+              children: const [
+                MyLeaveHomeScreen(),
+                //sizeBox10w,
+                MyAttendanceHomeScreen(),
               ],
             ),
-            SizedBox(height: 7.h),
             const MyClaimHomeScreen(),
-            SizedBox(height: 7.h),
             const MyTravelHomeScreen(),
-            SizedBox(height: 4.h),
             const BirthDayHomeScreen(),
-            SizedBox(height: 2.h),
             const HolidayHomeScreen(),
-            SizedBox(height: 2.h),
-            const TaskHomeScreen(),
-            SizedBox(height: 2.h),
-            const NewsHomeScreen(),
             sizeBox10h
           ],
         ),

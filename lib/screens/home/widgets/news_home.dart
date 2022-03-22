@@ -44,9 +44,12 @@ class _NewsHomeScreenState extends State<NewsHomeScreen> {
               ),
               Consumer<HomeEmployeeDataProvider>(builder: (context, provider, child) {
                 if (provider.loading) {
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      color: Palette.circularProgress,
+                  return Padding(
+                    padding: EdgeInsets.only(top: 10.w),
+                    child: const Center(
+                      child: CircularProgressIndicator(
+                        color: Palette.circularProgress,
+                      ),
                     ),
                   );
                 }
@@ -54,9 +57,9 @@ class _NewsHomeScreenState extends State<NewsHomeScreen> {
                   return Padding(
                     padding: EdgeInsets.only(top: 10.h, right: 10.w),
                     child: ListView.builder(
+                        padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        padding: EdgeInsets.zero,
                         itemCount: provider.newsList.length,
                         itemBuilder: (context, index) {
                           return Column(

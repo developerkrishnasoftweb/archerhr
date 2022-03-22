@@ -1,6 +1,7 @@
 import 'package:archerhr_mobile/const/const_function.dart';
 import 'package:archerhr_mobile/const/const_global.dart';
 import 'package:archerhr_mobile/screens/dashboard/view/dashboard_screen.dart';
+import 'package:archerhr_mobile/utils/services/palette.dart';
 import 'package:archerhr_mobile/utils/services/rest_apis.dart';
 import 'package:archerhr_mobile/utils/services/utils.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +17,15 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   bool isLoading = false;
+  bool showPasswordUser = false;
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  void toggleVisibility() {
+    setState(() {
+      showPasswordUser = !showPasswordUser;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +53,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   margin: EdgeInsets.symmetric(horizontal: 15.w),
                   child: TextFormField(
                     controller: usernameController,
+                    cursorColor: Palette.appBarColor,
                     decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                        color: Palette.appBarColor,
+                        width: 2.w,
+                      )),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                        color: Colors.grey,
+                        width: 1.w,
+                      )),
                       hintText: ' Login ID',
                       labelText: 'LOGIN ID',
                       labelStyle: TextStyle(
@@ -54,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
                       ),
-                      prefixIcon: const Icon(Icons.person_outline_outlined),
+                      prefixIcon: const Icon(Icons.person_outline_outlined,color: Palette.appBarColor),
                     ),
                   ),
                 ),
@@ -63,11 +81,30 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 60.h,
                   margin: EdgeInsets.symmetric(horizontal: 15.w),
                   child: TextFormField(
-                    obscureText: true,
                     controller: passwordController,
+                    obscureText: !showPasswordUser,
+                    cursorColor: Palette.appBarColor,
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock_outlined),
-                      border: const OutlineInputBorder(),
+                      prefixIcon: const Icon(Icons.lock_outlined,color: Palette.appBarColor),
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          toggleVisibility();
+                        },
+                        child: Icon(
+                          showPasswordUser ? Icons.visibility : Icons.visibility_off,
+                          color: Palette.appBarColor,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Palette.appBarColor,
+                            width: 2.w,
+                          )),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey,
+                            width: 1.w,
+                          )),
                       hintText: 'PASSWORD',
                       hintStyle: TextStyle(
                         fontSize: 15.sp,
@@ -145,7 +182,13 @@ class _LoginScreenState extends State<LoginScreen> {
       }
       isLoading = false;
     } else {
-      Utils.showToast("Please enter username and password");
+      if(usernameController.text.isEmpty && passwordController.text.isEmpty){
+        Utils.showToast("Please enter username and password");
+      }else if(usernameController.text.isEmpty){
+        Utils.showToast("Please enter username");
+      }else{
+        Utils.showToast("Please enter password");
+      }
     }
   }
 }

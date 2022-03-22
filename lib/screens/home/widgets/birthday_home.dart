@@ -13,14 +13,14 @@ class _BirthDayHomeScreenState extends State<BirthDayHomeScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return  Card(
+    return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.r),
       ),
       child: SizedBox(
         width: size.width,
         child: Padding(
-          padding: EdgeInsets.only(left: 10.w, top: 10.h, bottom: 10.h),
+          padding: EdgeInsets.only(left: 10.w, top: 10.h,bottom: 10.h),
           child: Column(
             children: [
               Row(
@@ -42,10 +42,10 @@ class _BirthDayHomeScreenState extends State<BirthDayHomeScreen> {
               Padding(
                 padding: EdgeInsets.only(top: 10.h, right: 10.w),
                 child: ListView.builder(
+                    padding: EdgeInsets.zero,
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: 2,
-                    padding: EdgeInsets.zero,
                     itemBuilder: (context, index) {
                       return Column(
                         children: [

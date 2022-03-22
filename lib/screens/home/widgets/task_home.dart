@@ -58,7 +58,7 @@ class _TaskHomeScreenState extends State<TaskHomeScreen> {
                     showFirstLastButtons: true,
                     headingRowHeight: 40,
                     columnSpacing: 40,
-                    horizontalMargin: 10,
+                    horizontalMargin: 20,
                     columns: const <DataColumn>[
                       DataColumn(
                         label: Text('Id'),

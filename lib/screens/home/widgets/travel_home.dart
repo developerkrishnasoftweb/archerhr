@@ -7,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-
 class MyTravelHomeScreen extends StatefulWidget {
   const MyTravelHomeScreen({Key key}) : super(key: key);
 
@@ -30,53 +29,67 @@ class _MyTravelHomeScreenState extends State<MyTravelHomeScreen> {
           ),
         );
       },
-      child: Container(
-        height: 180.h,
-        width: size.width,
-        decoration: BoxDecoration(
-          color: Colors.white,
+      child: Card(
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.r),
         ),
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(10.w, 10.h, 10.w, 0.h),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  const Icon(
-                    Icons.home,
-                    size: 15,
-                  ),
-                  sizeBox5w,
-                  Text(
-                    "My Travel",
-                    style: TextStyle(
-                      fontSize: 10.h,
-                      fontWeight: FontWeight.w700,
+        child: Container(
+          height: 180.h,
+          width: size.width,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20.r),
+          ),
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(10.w, 10.h, 10.w, 0.h),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.home,
+                      size: 15,
                     ),
-                  )
-                ],
-              ),
-              Consumer<DashboardProvider>(builder: (context, provider, child) {
-                return Expanded(
-                    child: SfCircularChart(
-                        legend: Legend(isVisible: true, overflowMode: LegendItemOverflowMode.scroll),
-                        tooltipBehavior: TooltipBehavior(enable: true),
-                        series: <CircularSeries>[
-                          DoughnutSeries<Travel, String>(
-                              legendIconType: LegendIconType.rectangle,
-                              enableTooltip: true,
-                              //explodeAll: true,
-                              //explode: true,
-                              //explodeIndex: 0,
-                              dataSource: provider.travelAvailability,
-                              xValueMapper: (Travel data, _) => data.status,
-                              yValueMapper: (Travel data, _) => data.count,
-                              dataLabelSettings:
-                              const DataLabelSettings(isVisible: true, labelPosition: ChartDataLabelPosition.outside)),
-                        ]));
-              }),
-            ],
+                    sizeBox5w,
+                    Text(
+                      "My Travel",
+                      style: TextStyle(
+                        fontSize: 10.h,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    )
+                  ],
+                ),
+                Consumer<DashboardProvider>(builder: (context, provider, child) {
+                  if(provider.loading){
+                    return Text(
+                      "No Data Found",
+                      style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black,
+                      ),
+                    );
+                  }else{
+                    return Expanded(
+                      child: SfCircularChart(
+                          legend: Legend(isVisible: true, overflowMode: LegendItemOverflowMode.scroll),
+                          tooltipBehavior: TooltipBehavior(enable: true),
+                          series: <CircularSeries>[
+                            DoughnutSeries<Travel, String>(
+                                legendIconType: LegendIconType.rectangle,
+                                enableTooltip: true,
+                                dataSource: provider.travelAvailability,
+                                xValueMapper: (Travel data, _) => data.status,
+                                yValueMapper: (Travel data, _) => data.count,
+                                dataLabelSettings:
+                                const DataLabelSettings(isVisible: true, labelPosition: ChartDataLabelPosition.outside)),
+                          ]),
+                    );
+                  }
+                }),
+              ],
+            ),
           ),
         ),
       ),

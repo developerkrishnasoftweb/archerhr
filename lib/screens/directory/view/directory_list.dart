@@ -73,7 +73,7 @@ class _EmployeesListState extends State<EmployeesList> {
                           horizontalMargin: 10,
                           columns: const <DataColumn>[
                             DataColumn(
-                              label: Text('Id'),
+                              label: SizedBox(),
                             ),
                             DataColumn(
                               label: Text('Name'),
@@ -87,9 +87,7 @@ class _EmployeesListState extends State<EmployeesList> {
                             DataColumn(
                               label: Text('Email Address'),
                             ),
-                            DataColumn(
-                              label: SizedBox(),
-                            ),
+
                           ],
                           source: DirectorySource(directoryList: provider.allEmployeesList, context: context),
                         );
@@ -133,11 +131,7 @@ class DirectorySource extends DataTableSource {
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
-      DataCell(Text(directoryList[index].id.toString())),
-      DataCell(Text(directoryList[index].firstName + "," + directoryList[index].lastName)),
-      DataCell(Text(directoryList[index].dept)),
-      DataCell(Text(directoryList[index].desg)),
-      DataCell(Text(directoryList[index].email == null ? "N/A" : directoryList[index].email)),
+      //DataCell(Text(directoryList[index].id.toString())),
       DataCell(Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -155,7 +149,11 @@ class DirectorySource extends DataTableSource {
             color: Palette.buttonBackgroundColor,
           ),
         ],
-      ))
+      )),
+      DataCell(Text(directoryList[index].firstName + "," + directoryList[index].lastName)),
+      DataCell(Text(directoryList[index].dept)),
+      DataCell(Text(directoryList[index].desg)),
+      DataCell(Text(directoryList[index].email == null ? "N/A" : directoryList[index].email))
     ]);
   }
 }

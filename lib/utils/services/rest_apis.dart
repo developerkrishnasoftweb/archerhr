@@ -591,3 +591,17 @@ Future<Data<DirectoryByIdModel>> getDirectoryDataById(queryParameter) async {
     return const Data(message: _errorMessage);
   }
 }
+
+///CHANGE PASSWORD
+Future<http.StreamedResponse> changePassword({Map<String, Object> body}) async {
+  try {
+    var request = http.Request('POST', Uri.parse(Urls.baseUrl + Urls.changePassword));
+    request.body = json.encode(body);
+    request.headers.addAll(headers);
+
+    return await request.send();
+  } catch (_) {
+    log(_.toString());
+    return null;
+  }
+}

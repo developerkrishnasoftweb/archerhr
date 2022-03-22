@@ -6,6 +6,10 @@ class Urls {
   // Login url
   static const String login = '/api/auth/login';
 
+///CHANGE PASSWORD
+  // Change password url
+  static const String changePassword = '/api/auth/ChangePassword';
+
 ///PROFILE
   // profile url
   static const String profile = '/EmployeeData/GetEmpMyProfile';

@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>BGTaskSchedulerPermittedIdentifiers</key>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>dev.flutter.background.refresh</string>
 	</array>
@@ -24,21 +24,21 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>https</string>
+		<string>http</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-    <string>Allow this app to access your camera</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Allow this app to access your gallery</string>
+	<string>Allow this app to access your camera</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Want to know where you are!</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Because I want to know where you are!</string>
-	<key>LSApplicationQueriesSchemes</key>
-    <array>
-    	<string>https</string>
-    	<string>http</string>
-    </array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow this app to access your gallery</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
@@ -52,8 +52,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
