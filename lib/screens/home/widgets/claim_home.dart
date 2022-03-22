@@ -2,6 +2,7 @@ import 'package:archerhr_mobile/const/const_size.dart';
 import 'package:archerhr_mobile/model/dashboard_data_model.dart';
 import 'package:archerhr_mobile/provider/dashboard_provider.dart';
 import 'package:archerhr_mobile/screens/dashboard/view/dashboard_screen.dart';
+import 'package:archerhr_mobile/utils/services/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -52,7 +53,7 @@ class _MyClaimHomeScreenState extends State<MyClaimHomeScreen> {
                     ),
                     sizeBox5w,
                     Text(
-                      "My Claim",
+                      "My Expense",
                       style: TextStyle(
                         fontSize: 10.h,
                         fontWeight: FontWeight.w700,
@@ -62,13 +63,30 @@ class _MyClaimHomeScreenState extends State<MyClaimHomeScreen> {
                 ),
                 Consumer<DashboardProvider>(builder: (context, provider, child) {
                   if (provider.loading) {
-                    return Text(
-                      "No Data Found",
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black,
-                      ),
+                    return Column(
+                      children: [
+                        sizeBox50h,
+                        const Center(
+                          child: CircularProgressIndicator(
+                            color: Palette.circularProgress,
+                          ),
+                        ),
+                      ],
+                    );
+                  }
+                  if (provider.expenseAvailability.isEmpty) {
+                    return Column(
+                      children: [
+                        sizeBox50h,
+                        Text(
+                          "No Expense Data Found",
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     );
                   } else {
                     return Expanded(

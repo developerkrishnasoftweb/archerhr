@@ -96,7 +96,7 @@ class _MyLeaveHomeScreenState extends State<MyLeaveHomeScreen> {
                             linearStrokeCap: LinearStrokeCap.roundAll,
                             progressColor: Colors.blue[400],
                             backgroundColor: Colors.grey[300],
-                            /*progressColor: Colors.grey[300],
+                            /*progressColor: Colors.blue[300],
                               backgroundColor: Colors.blue[400],*/
                               //animateFromLastPercent: true,
                               //isRTL: true,

@@ -54,14 +54,14 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             const CalendarHomeScreen(),
             //const TaskHomeScreen(),
-            const NewsHomeScreen(),
-            Row(
+            //const NewsHomeScreen(),
+            /*Row(
               children: const [
                 MyLeaveHomeScreen(),
                 //sizeBox10w,
                 MyAttendanceHomeScreen(),
               ],
-            ),
+            ),*/
             const MyClaimHomeScreen(),
             const MyTravelHomeScreen(),
             const BirthDayHomeScreen(),
