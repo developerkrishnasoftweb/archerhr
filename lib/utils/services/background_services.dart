@@ -1,6 +1,5 @@
-
 import 'dart:async';
-
+import 'package:background_fetch/background_fetch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 
@@ -27,7 +26,6 @@ Future<void> initializeService() async {
     ),
   );
 }
-
 
 // to ensure this executed
 // run app from xcode, then from xcode menu, select Simulate Background Fetch
@@ -66,4 +64,47 @@ void onStart() {
     }
   });
   service.setForegroundMode(true);
+}
+
+/// Background fetch configuration
+Future<void> backgroundFetch() async {
+  await BackgroundFetch.configure(
+    BackgroundFetchConfig(
+      minimumFetchInterval: 5,
+      forceAlarmManager: false,
+      stopOnTerminate: false,
+      startOnBoot: true,
+      enableHeadless: true,
+      requiresBatteryNotLow: false,
+      requiresCharging: false,
+      requiresStorageNotLow: false,
+      requiresDeviceIdle: false,
+      requiredNetworkType: NetworkType.NONE,
+    ),
+    _onFetch,
+    _onBackgroundFetchTimeout,
+  );
+
+  await BackgroundFetch.scheduleTask(TaskConfig(
+    delay: 1000,
+    enableHeadless: true,
+    periodic: true,
+    stopOnTerminate: false,
+    taskId: "tick",
+  ));
+}
+
+///
+_onFetch(String taskId) {
+  print("Received On Fetch Task with the id - $taskId");
+}
+
+///
+void _onBackgroundFetchTimeout(String taskId) {}
+
+///
+headlessBackgroundTask(HeadlessTask task) {
+  if (task.taskId == 'tick') {
+    print("A tick event received");
+  }
 }

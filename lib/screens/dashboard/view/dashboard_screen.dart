@@ -71,13 +71,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   void getCurrentLocation() async {
     LocationPermission per = await Geolocator.checkPermission();
-    if (per == LocationPermission.denied || per == LocationPermission.deniedForever) {
+    if (per == LocationPermission.denied ||
+        per == LocationPermission.deniedForever) {
       log("permission denied");
       LocationPermission per1 = await Geolocator.requestPermission();
 
       if (per1 != null) {
-        Position currentLoc = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
-        List<Placemark> placeMark = await placemarkFromCoordinates(currentLoc.latitude, currentLoc.longitude);
+        Position currentLoc = await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.best);
+        List<Placemark> placeMark = await placemarkFromCoordinates(
+            currentLoc.latitude, currentLoc.longitude);
         Placemark place = placeMark[0];
         setState(() {
           lat = currentLoc.latitude.toString();
@@ -92,8 +95,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
         });
       }
     } else {
-      Position currentLoc = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
-      List<Placemark> placeMark = await placemarkFromCoordinates(currentLoc.latitude, currentLoc.longitude);
+      Position currentLoc = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.best);
+      List<Placemark> placeMark = await placemarkFromCoordinates(
+          currentLoc.latitude, currentLoc.longitude);
       Placemark place = placeMark[0];
       setState(() {
         lat = currentLoc.latitude.toString();
@@ -112,12 +117,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
   _empPunchIn() async {
     isLoading = true;
     if (kSharedPreferences.getString("PunchingId") == null) {
-      if (subLocationName.isNotEmpty || locationName.isNotEmpty && lat.isNotEmpty && long.isNotEmpty) {
-        final punchJson = {"start_city": subLocationName + "," + locationName, "start_latit": lat, "start_longt": long};
+      if (subLocationName.isNotEmpty ||
+          locationName.isNotEmpty && lat.isNotEmpty && long.isNotEmpty) {
+        final punchJson = {
+          "start_city": subLocationName + "," + locationName,
+          "start_latit": lat,
+          "start_longt": long
+        };
         final response = await punchIn(body: punchJson);
 
         if (response.statusCode == 200 && response.data.id != null) {
-          kSharedPreferences.setString("PunchingId", response.data.id.toString());
+          kSharedPreferences.setString(
+              "PunchingId", response.data.id.toString());
           log("Start Punch : ${kSharedPreferences.getString("PunchingId")}");
           showTimer = true;
           if (isPunched == false) {
@@ -148,7 +159,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
       }
     } else {
       log("End Time punching id : ${kSharedPreferences.getString("PunchingId")}");
-      if (kSharedPreferences.getString("PunchingId") != null && subLocationName.isNotEmpty ||
+      if (kSharedPreferences.getString("PunchingId") != null &&
+              subLocationName.isNotEmpty ||
           locationName.isNotEmpty && lat.isNotEmpty && long.isNotEmpty) {
         final punchJson = {
           "Id": kSharedPreferences.getString("PunchingId"),
@@ -266,7 +278,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 Row(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 20.h, left: 20.w, bottom: 20.h),
+                      padding:
+                          EdgeInsets.only(top: 20.h, left: 20.w, bottom: 20.h),
                       child: Container(
                         height: 55.h,
                         width: 55.w,
@@ -282,7 +295,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     sizeBox5w,
                     provider.profileModel.employeeDet.firstName.isNotEmpty
                         ? Text(
-                            provider.loading ? "Loading" : provider.profileModel.employeeDet.firstName,
+                            provider.loading
+                                ? "Loading"
+                                : provider.profileModel.employeeDet.firstName,
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 18.sp,
@@ -306,7 +321,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     });
                   },
                   child: Container(
-                    color: selected == 0 ? Palette.selectedDrawerTabColor : Colors.white,
+                    color: selected == 0
+                        ? Palette.selectedDrawerTabColor
+                        : Colors.white,
                     child: Row(
                       children: [
                         Padding(
@@ -317,9 +334,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             builder: (context) => IconButton(
                               icon: Image.asset(
                                 "assets/images/home.png",
-                                color: selected == 0 ? Colors.white : Colors.grey,
+                                color:
+                                    selected == 0 ? Colors.white : Colors.grey,
                               ),
-                              onPressed: () => Scaffold.of(context).openDrawer(),
+                              onPressed: () =>
+                                  Scaffold.of(context).openDrawer(),
                             ),
                           ),
                         ),
@@ -349,7 +368,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     );
                   },
                   child: Container(
-                    color: selected == 1 ? Palette.selectedDrawerTabColor : Colors.white,
+                    color: selected == 1
+                        ? Palette.selectedDrawerTabColor
+                        : Colors.white,
                     child: Row(
                       children: [
                         Padding(
@@ -360,7 +381,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             builder: (context) => IconButton(
                               icon: Image.asset(
                                 "assets/images/wallet.png",
-                                color: selected == 1 ? Colors.white : Colors.grey,
+                                color:
+                                    selected == 1 ? Colors.white : Colors.grey,
                               ),
                               onPressed: () {},
                             ),
@@ -392,7 +414,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     );
                   },
                   child: Container(
-                    color: selected == 2 ? Palette.selectedDrawerTabColor : Colors.white,
+                    color: selected == 2
+                        ? Palette.selectedDrawerTabColor
+                        : Colors.white,
                     child: Row(
                       children: [
                         Padding(
@@ -403,9 +427,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             builder: (context) => IconButton(
                               icon: Image.asset(
                                 "assets/images/thumb.png",
-                                color: selected == 2 ? Colors.white : Colors.grey,
+                                color:
+                                    selected == 2 ? Colors.white : Colors.grey,
                               ),
-                              onPressed: () => Scaffold.of(context).openDrawer(),
+                              onPressed: () =>
+                                  Scaffold.of(context).openDrawer(),
                             ),
                           ),
                         ),
@@ -435,7 +461,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     );
                   },
                   child: Container(
-                    color: selected == 3 ? Palette.selectedDrawerTabColor : Colors.white,
+                    color: selected == 3
+                        ? Palette.selectedDrawerTabColor
+                        : Colors.white,
                     child: Row(
                       children: [
                         Padding(
@@ -446,9 +474,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             builder: (context) => IconButton(
                               icon: Image.asset(
                                 "assets/images/plane.png",
-                                color: selected == 3 ? Colors.white : Colors.grey,
+                                color:
+                                    selected == 3 ? Colors.white : Colors.grey,
                               ),
-                              onPressed: () => Scaffold.of(context).openDrawer(),
+                              onPressed: () =>
+                                  Scaffold.of(context).openDrawer(),
                             ),
                           ),
                         ),
@@ -470,11 +500,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     });
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const CompanyScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => const CompanyScreen()),
                     );
                   },
                   child: Container(
-                    color: selected == 4 ? Palette.selectedDrawerTabColor : Colors.white,
+                    color: selected == 4
+                        ? Palette.selectedDrawerTabColor
+                        : Colors.white,
                     child: Row(
                       children: [
                         Padding(
@@ -485,9 +518,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             builder: (context) => IconButton(
                               icon: Image.asset(
                                 "assets/images/company.png",
-                                color: selected == 4 ? Colors.white : Colors.grey,
+                                color:
+                                    selected == 4 ? Colors.white : Colors.grey,
                               ),
-                              onPressed: () => Scaffold.of(context).openDrawer(),
+                              onPressed: () =>
+                                  Scaffold.of(context).openDrawer(),
                             ),
                           ),
                         ),
@@ -516,7 +551,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     );
                   },
                   child: Container(
-                    color: selected == 5 ? Palette.selectedDrawerTabColor : Colors.white,
+                    color: selected == 5
+                        ? Palette.selectedDrawerTabColor
+                        : Colors.white,
                     child: Row(
                       children: [
                         Padding(
@@ -527,9 +564,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             builder: (context) => IconButton(
                               icon: Image.asset(
                                 "assets/images/hand.png",
-                                color: selected == 5 ? Colors.white : Colors.grey,
+                                color:
+                                    selected == 5 ? Colors.white : Colors.grey,
                               ),
-                              onPressed: () => Scaffold.of(context).openDrawer(),
+                              onPressed: () =>
+                                  Scaffold.of(context).openDrawer(),
                             ),
                           ),
                         ),
@@ -551,7 +590,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     });
                   },
                   child: Container(
-                    color: selected == 6 ? Palette.selectedDrawerTabColor : Colors.white,
+                    color: selected == 6
+                        ? Palette.selectedDrawerTabColor
+                        : Colors.white,
                     child: Row(
                       children: [
                         Padding(
@@ -562,9 +603,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             builder: (context) => IconButton(
                               icon: Image.asset(
                                 "assets/images/hand.png",
-                                color: selected == 6 ? Colors.white : Colors.grey,
+                                color:
+                                    selected == 6 ? Colors.white : Colors.grey,
                               ),
-                              onPressed: () => Scaffold.of(context).openDrawer(),
+                              onPressed: () =>
+                                  Scaffold.of(context).openDrawer(),
                             ),
                           ),
                         ),
@@ -623,7 +666,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     SizedBox(
                       width: 120.w,
                       child: Text(
-                        provider.loading ? "Loading" : provider.profileModel.employeeDet.firstName,
+                        provider.loading
+                            ? "Loading"
+                            : provider.profileModel.employeeDet.firstName,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -680,22 +725,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
           PopupMenuButton<int>(
             padding: EdgeInsets.zero,
             elevation: 20,
-            shape: const OutlineInputBorder(borderSide: BorderSide(color: Palette.appBarColor, width: 1)),
+            shape: const OutlineInputBorder(
+                borderSide: BorderSide(color: Palette.appBarColor, width: 1)),
             icon: const Icon(
               Icons.more_vert_rounded,
               size: 30,
             ),
             onSelected: (int value) {
               if (value == 0) {
-                 Navigator.push(
+                Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ProfileScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const ProfileScreen()),
                 );
               } else if (value == 1) {
                 showDialog(
                   barrierDismissible: false,
                   context: context,
-                  builder: (BuildContext context) => const ChangePasswordScreen(),
+                  builder: (BuildContext context) =>
+                      const ChangePasswordScreen(),
                 );
               } else if (value == 2) {
                 showDialog(
@@ -712,7 +760,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             await kSharedPreferences.remove("Cookie");
                             await kSharedPreferences.clear();
                             Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(builder: (context) => const LoginScreen()),
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginScreen()),
                               (Route<dynamic> route) => false,
                             );
                             await FlutterRestart.restartApp();
@@ -729,7 +778,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     alignment: Alignment.topRight,
                     child: Text(
                       'My Profile',
-                      style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300),
+                      style: TextStyle(
+                          fontSize: 16.sp, fontWeight: FontWeight.w300),
                     ),
                   ),
                 ),
@@ -739,7 +789,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     alignment: Alignment.topRight,
                     child: Text(
                       'Change Password',
-                      style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300),
+                      style: TextStyle(
+                          fontSize: 16.sp, fontWeight: FontWeight.w300),
                     ),
                   ),
                 ),
@@ -749,7 +800,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     alignment: Alignment.topRight,
                     child: Text(
                       'LogOut',
-                      style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300),
+                      style: TextStyle(
+                          fontSize: 16.sp, fontWeight: FontWeight.w300),
                     ),
                   ),
                 ),

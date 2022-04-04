@@ -19,6 +19,7 @@ import 'package:archerhr_mobile/provider/travel_list_data_provider.dart';
 import 'package:archerhr_mobile/screens/auth/login/login_screen.dart';
 import 'package:archerhr_mobile/screens/dashboard/view/dashboard_screen.dart';
 import 'package:archerhr_mobile/utils/services/background_services.dart';
+import 'package:background_fetch/background_fetch.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,9 +29,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeService();
-  await Future.delayed(const Duration(seconds: 1));
+  await backgroundFetch();
+  // await Future.delayed(const Duration(seconds: 10));
   kSharedPreferences = await SharedPreferences.getInstance();
   runApp(const MyApp());
+
+  // print("Registering headless task");
+  print(await BackgroundFetch.registerHeadlessTask(headlessBackgroundTask));
 }
 
 class MyApp extends StatelessWidget {
@@ -52,23 +57,40 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       builder: () => MultiProvider(
         providers: [
-          ChangeNotifierProvider<ConnectivityProvider>(create: (context) => ConnectivityProvider()),
-          ChangeNotifierProvider<GetLeaveProvider>(create: (context) => GetLeaveProvider()),
-          ChangeNotifierProvider<LeaveDataProvider>(create: (context) => LeaveDataProvider()),
-          ChangeNotifierProvider<TravelDataProvider>(create: (context) => TravelDataProvider()),
-          ChangeNotifierProvider<GetTravelProvider>(create: (context) => GetTravelProvider()),
-          ChangeNotifierProvider<TravelListDataProvider>(create: (context) => TravelListDataProvider()),
-          ChangeNotifierProvider<ExpenseListDataProvider>(create: (context) => ExpenseListDataProvider()),
-          ChangeNotifierProvider<ExpenseDataProvider>(create: (context) => ExpenseDataProvider()),
-          ChangeNotifierProvider<GetExpenseProvider>(create: (context) => GetExpenseProvider()),
-          ChangeNotifierProvider<LeaveApprovalProvider>(create: (context) => LeaveApprovalProvider()),
-          ChangeNotifierProvider<ExpenseApprovalProvider>(create: (context) => ExpenseApprovalProvider()),
-          ChangeNotifierProvider<DashboardProvider>(create: (context) => DashboardProvider()),
-          ChangeNotifierProvider<ProfileProvider>(create: (context) => ProfileProvider()),
-          ChangeNotifierProvider<TravelApprovalProvider>(create: (context) => TravelApprovalProvider()),
-          ChangeNotifierProvider<GetDirectoryListProvider>(create: (context) => GetDirectoryListProvider()),
-          ChangeNotifierProvider<GetDirectoryByIdProvider>(create: (context) => GetDirectoryByIdProvider()),
-          ChangeNotifierProvider<HomeEmployeeDataProvider>(create: (context) => HomeEmployeeDataProvider()),
+          ChangeNotifierProvider<ConnectivityProvider>(
+              create: (context) => ConnectivityProvider()),
+          ChangeNotifierProvider<GetLeaveProvider>(
+              create: (context) => GetLeaveProvider()),
+          ChangeNotifierProvider<LeaveDataProvider>(
+              create: (context) => LeaveDataProvider()),
+          ChangeNotifierProvider<TravelDataProvider>(
+              create: (context) => TravelDataProvider()),
+          ChangeNotifierProvider<GetTravelProvider>(
+              create: (context) => GetTravelProvider()),
+          ChangeNotifierProvider<TravelListDataProvider>(
+              create: (context) => TravelListDataProvider()),
+          ChangeNotifierProvider<ExpenseListDataProvider>(
+              create: (context) => ExpenseListDataProvider()),
+          ChangeNotifierProvider<ExpenseDataProvider>(
+              create: (context) => ExpenseDataProvider()),
+          ChangeNotifierProvider<GetExpenseProvider>(
+              create: (context) => GetExpenseProvider()),
+          ChangeNotifierProvider<LeaveApprovalProvider>(
+              create: (context) => LeaveApprovalProvider()),
+          ChangeNotifierProvider<ExpenseApprovalProvider>(
+              create: (context) => ExpenseApprovalProvider()),
+          ChangeNotifierProvider<DashboardProvider>(
+              create: (context) => DashboardProvider()),
+          ChangeNotifierProvider<ProfileProvider>(
+              create: (context) => ProfileProvider()),
+          ChangeNotifierProvider<TravelApprovalProvider>(
+              create: (context) => TravelApprovalProvider()),
+          ChangeNotifierProvider<GetDirectoryListProvider>(
+              create: (context) => GetDirectoryListProvider()),
+          ChangeNotifierProvider<GetDirectoryByIdProvider>(
+              create: (context) => GetDirectoryByIdProvider()),
+          ChangeNotifierProvider<HomeEmployeeDataProvider>(
+              create: (context) => HomeEmployeeDataProvider()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -128,7 +150,9 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
-          home: _isAuthenticated == true ? DashboardScreen() : const LoginScreen(),
+          home: _isAuthenticated == true
+              ? DashboardScreen()
+              : const LoginScreen(),
         ),
       ),
     );
